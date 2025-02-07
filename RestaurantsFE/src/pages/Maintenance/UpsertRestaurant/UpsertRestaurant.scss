@@ -1,0 +1,27 @@
+@use "../../../styles/mixings/responsive" as *;
+.upsert-restaurant{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    @include fromSM{
+        flex-direction: row;
+        gap: 3rem;
+    }
+    
+    .restaurant{
+
+        &__image{
+            width: 300px;
+            aspect-ratio: 1/1;
+            background-color: antiquewhite;
+        }
+        &__form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+    }
+
+}

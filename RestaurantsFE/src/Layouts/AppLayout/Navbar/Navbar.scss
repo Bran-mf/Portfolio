@@ -1,0 +1,30 @@
+@use '../../../styles/general/config' as *;
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid $background_color_layer2;
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  &__link {
+    padding: 0.5rem 1rem;
+
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+
+    &.active {
+      background-color: white;
+      color: black;
+    }
+  }
+}

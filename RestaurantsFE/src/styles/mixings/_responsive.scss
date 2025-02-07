@@ -1,0 +1,25 @@
+$fromSM: 576px;
+$fromMD: 768px;
+$fromLG: 992px;
+$fromXL: 1200px;
+
+@mixin fromSM {
+  @media (min-width: $fromSM) {
+    @content;
+  }
+}
+@mixin fromMD {
+  @media (min-width: $fromMD) {
+    @content;
+  }
+}
+@mixin fromLG {
+  @media (min-width: $fromLG) {
+    @content;
+  }
+}
+@mixin fromXL {
+  @media (min-width: $fromXL) {
+    @content;
+  }
+}

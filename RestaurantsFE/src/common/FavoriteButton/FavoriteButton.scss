@@ -1,0 +1,22 @@
+@use '../../styles/mixings/responsive' as *;
+.favorite-button {
+  border: none !important;
+  outline: none !important;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 2rem;
+  font-size: larger;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  @include fromSM {
+    &:hover {
+      scale: 1.05;
+    }
+  }
+}
