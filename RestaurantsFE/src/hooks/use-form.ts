@@ -17,7 +17,7 @@ const useForm = <T>(initialState: T, validations: ZodObject<any, any, any>) => {
     handleSetError(newErrors);
   };
   const handleSetError = (newErrors: z.SafeParseReturnType<any, any>) => {
-    const previouseIssues = errors?.error?.issues||[];
+    const previouseIssues = errors?.error?.issues || [];
     newErrors.error?.addIssues(previouseIssues);
     setErrors(newErrors);
   };
@@ -27,8 +27,10 @@ const useForm = <T>(initialState: T, validations: ZodObject<any, any, any>) => {
     }
     return validations;
   };
+  const handleSimpleOnChange = (name: string, value: any) =>
+    onChange((prev) => ({ ...prev, [name]: value }));
 
-  return { data, onChange, errors, getFieldError, validate };
+  return { data, onChange, errors, getFieldError, validate,handleSimpleOnChange };
 };
 
 export default useForm;

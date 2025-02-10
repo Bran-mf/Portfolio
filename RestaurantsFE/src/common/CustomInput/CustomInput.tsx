@@ -2,13 +2,14 @@ import React from 'react';
 import './CustomInput.scss';
 interface IinputProps {
   type: 'text' | 'email' | 'password' | 'number';
-  value: string;
-  onChange: (name: string, value: string) => void;
+  value: any;
+  onChange: (name: string, value: any) => void;
   name: string;
   label?: string;
   placeholder?: string;
   error?: string;
-  onBlur?: (name:string) => void;
+  onBlur?: (name: string) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 const CustomInput = ({
   placeholder,
@@ -19,11 +20,14 @@ const CustomInput = ({
   value,
   onBlur,
   error = '',
+  onKeyDown,
 }: IinputProps) => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    onChange(name, value);
+    const fixedValue = type === 'number' ? Number(value) : value;
+    onChange(name, fixedValue);
   };
+
   const errorClass = error ? 'custom-input__input--invalid' : '';
   return (
     <div className="custom-input">
@@ -34,8 +38,9 @@ const CustomInput = ({
         name={name}
         value={value}
         onChange={handleOnChange}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
-        onBlur={()=>onBlur?.(name)}
+        onBlur={() => onBlur?.(name)}
       />
       <small className="custom-input__error">{error}</small>
     </div>
