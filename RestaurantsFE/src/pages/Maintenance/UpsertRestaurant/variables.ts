@@ -18,5 +18,5 @@ export const upsertRestaurant_initialState: IUpsertRestaurantProps = {
   description: '',
   address: '',
   phone: '',
-  availability: 0,
+  availability: 0
 };
