@@ -3,8 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Restaurant } from 'src/users/entities/restaurants.entity';
 import { User } from 'src/users/entities/user.entity';
+import {User as Auth_User} from 'src/auth/entities/user.entity';
 
-console.log('config.database', process.env.DATABASE_NAME);
 @Module({
   controllers: [],
   providers: [],
@@ -20,7 +20,7 @@ console.log('config.database', process.env.DATABASE_NAME);
           password: configService.get('database.password'),
           database: configService.get('database.database'),
           synchronize: configService.get('database.synchronize'),
-          entities: [User, Restaurant],
+          entities: [User, Restaurant,User,Auth_User],
         };
       },
       inject: [ConfigService],
