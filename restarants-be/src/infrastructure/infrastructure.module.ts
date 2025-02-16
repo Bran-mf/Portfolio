@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Restaurant } from 'src/users/entities/restaurants.entity';
-import { User } from 'src/users/entities/user.entity';
-import {User as Auth_User} from 'src/auth/entities/user.entity';
+import { Restaurant } from 'src/users/domain/entities/restaurants.entity';
+import { User } from 'src/users/domain/entities/user.entity';
+import {User as Auth_User} from 'src/auth/domain/entities/user.entity';
+import {Restaurant as Restaurants_Restaurant} from 'src/restaurants/domain/entities/restaurant.entity';
 
 @Module({
   controllers: [],
@@ -20,7 +21,7 @@ import {User as Auth_User} from 'src/auth/entities/user.entity';
           password: configService.get('database.password'),
           database: configService.get('database.database'),
           synchronize: configService.get('database.synchronize'),
-          entities: [User, Restaurant,User,Auth_User],
+          entities: [User, Restaurant,Auth_User,Restaurants_Restaurant],
         };
       },
       inject: [ConfigService],

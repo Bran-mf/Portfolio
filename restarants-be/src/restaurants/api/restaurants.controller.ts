@@ -24,11 +24,15 @@ export class RestaurantsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRestaurantDto: UpdateRestaurantDto) {
-    return this.restaurantsService.update(+id, updateRestaurantDto);
+    return this.restaurantsService.update(id, updateRestaurantDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.restaurantsService.remove(+id);
+    return this.restaurantsService.remove(id);
+  }
+  @Get('by_owner/:ownerId')
+  findByOwnerId(@Param('ownerId') ownerId: string) {
+    return this.restaurantsService.FindByOwner(ownerId);
   }
 }

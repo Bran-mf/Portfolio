@@ -1,29 +1,26 @@
-import {
-  Injectable,
-  UnauthorizedException,
-
-} from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../entities/user.entity';
-import { Repository } from 'typeorm';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { User } from '../domain/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { UserRepository } from '../infrastructure/repositories/user.repository';
+import { LoginCredentialsCheckSpecification } from '../domain/specifications/login-credentials-check.specificastion';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
+    private userRepository: UserRepository,
     private jwtService: JwtService,
   ) {}
   async signIn(email: string, pass: string) {
-    const user = await this.userRepository.findOne({ where: { email } });
-    if (user && user.password !== pass) {
-      throw new UnauthorizedException('Please check your login credentials');
-    }
+    const user = await this.userRepository.findByEmail(email);
+
+    const hasValidCredentials = new LoginCredentialsCheckSpecification(user).isSatisfiedBy(email, pass);
+    if(!hasValidCredentials) {
+      throw new UnauthorizedException('Invalid credentials');
+    }   
     const { password, ...result } = user;
-    const payload = { email: result.email, _id: result._id, roles: 'Admin' };
+    const payload = {...result, roles: 'Admin' };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
-
 }

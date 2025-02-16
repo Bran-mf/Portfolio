@@ -5,7 +5,7 @@ import { Restaurant } from './restaurants.entity';
 @Entity()
 export class User {
   @ObjectIdColumn()
-  _id: ObjectId;
+  _id: string;
   @Column()
   email: string;
   @Column()
