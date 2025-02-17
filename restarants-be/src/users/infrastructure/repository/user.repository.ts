@@ -13,6 +13,9 @@ export class UserRepository
   ) {
     super();
   }
+  create(user: User): Promise<User> {
+    return this.userRepository.save(user);
+  }
   findById(id: string): Promise<User> {
     return this.userRepository.findOneBy({
       _id: id,

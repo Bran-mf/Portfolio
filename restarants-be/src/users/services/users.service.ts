@@ -8,11 +8,8 @@ import { UserRepository } from '../infrastructure/repository/user.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(
-   private userRepository:UserRepository
-  ) {}
-  create(createUserDto: CreateUserDto) {
-  }
+  constructor(private userRepository: UserRepository) {}
+ 
 
   findAll() {
     return `This action returns all users`;
@@ -24,7 +21,7 @@ export class UsersService {
   getUserProfile(id: string) {
     return this.userRepository.findById(id);
   }
-  update(id: number, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 

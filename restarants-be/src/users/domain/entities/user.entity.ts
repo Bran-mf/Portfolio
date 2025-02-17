@@ -8,8 +8,14 @@ export class User {
   _id: string;
   @Column()
   email: string;
-  @Column()
-  password: string;
   @Column((type) => Restaurant)
   restaurants: Restaurant[];
+
+  setData(email: string) {
+    this.email = email;
+  }
+  
+  addRestaurant(restaurant: Restaurant) {
+    this.restaurants.push(restaurant);
+  }
 }

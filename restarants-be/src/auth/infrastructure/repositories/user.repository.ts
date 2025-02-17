@@ -15,6 +15,9 @@ export class UserRepository
   ) {
     super();
   }
+  create(user: User): Promise<User> {
+    return this.restaurantRepository.save(user);
+  }
   findByEmail(email: string): Promise<User> {
     return this.restaurantRepository.findOneBy({
       email,
